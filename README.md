@@ -10,17 +10,17 @@ The Lawyer creates lazy singleton class for storing rules and dimensions.
 final lawyer = Lawyer.instance;
 
 lawyer.setRules(
-	[
-		Rule(Action.allow, [
-		"t-shirt",
-		["S", "M"],
-		"blue"
-	]),
+  [
+	Rule(Action.allow, [
+	"t-shirt",
+	["S", "M"],
+	"blue"
+  ]),
 	Rule(Action.allow, ["jacket", "L", "black"]),
 	Rule(Action.allow, ["shoe", "46", "white"]),
 	Rule(Action.deny, ["shoe", "46"]),
 	Rule(Action.allow, ["shoe", "*", "*"]),
-	],
+  ],
 );
 
 // This will return true
@@ -31,20 +31,20 @@ lawyer.check(["jacket", "L"]);
 // Usage with dimension array
 final lawyer2 = Lawyer.instance;
 lawyer2.setRules([
-	Rule(Action.allow, [
-		'Gold member',
-		['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-		['Swimming pool', 'Gym', 'Sauna']
-	]),
-	Rule(Action.deny, [
-		'Guest',
-		['Mon', 'Tue'],
-		['Sauna', 'Gym']
-	]),
-	Rule(Action.allow, [
-		['Guest', 'Regular member'],
-		'*',
-		'*'
+  Rule(Action.allow, [
+	'Gold member',
+	['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+	['Swimming pool', 'Gym', 'Sauna']
+  ]),
+  Rule(Action.deny, [
+	'Guest',
+	['Mon', 'Tue'],
+	['Sauna', 'Gym']
+  ]),
+  Rule(Action.allow, [
+	['Guest', 'Regular member'],
+	'*',
+	'*'
 	])
 ]);
 
