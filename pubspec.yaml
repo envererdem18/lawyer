@@ -1,0 +1,19 @@
+name: lawyer
+description: Flutter package to set and obey the rules.
+version: 0.0.1
+homepage: https://envererdem.com/
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
