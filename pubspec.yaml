@@ -1,7 +1,7 @@
 name: lawyer
 description: Flutter package to set and obey the rules.
 version: 0.0.1
-homepage: https://envererdem.com/
+homepage: https://pub.dev/packages/lawyer
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
