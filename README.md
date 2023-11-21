@@ -45,7 +45,7 @@ lawyer2.setRules([
     ['Guest', 'Regular member'],
     '*',
     '*'
-    ])
+  ])
 ]);
 
 const memberships = ['Gold member', 'Regular member', 'Guest'];
