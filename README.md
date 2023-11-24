@@ -4,10 +4,9 @@ _A lightweight Flutter package to set business rules and obey_
 _Without in need of a database or expensive queries_
 ## Getting Started
 The Lawyer creates lazy singleton class for storing rules and dimensions.
-##### How to use:
 
+##### How to use:
 ```dart
-// Usage without dimensions array
 final lawyer = Lawyer.instance;
 
 lawyer.setRules(
@@ -26,10 +25,12 @@ lawyer.setRules(
 
 // This will return true
 lawyer.check(["jacket", "L"]);
+```
 
-  
+<br/>
 
-// Usage with dimension array
+##### Usage with dimensions array:
+```dart
 final lawyer2 = Lawyer.instance;
 lawyer2.setRules([
   Rule(Action.allow, [
