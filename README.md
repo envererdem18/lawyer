@@ -1,5 +1,6 @@
 
 _A lightweight Flutter package to set business rules and obey_
+<br/>
 _Without in need of a database or expensive queries_
 ## Getting Started
 The Lawyer creates lazy singleton class for storing rules and dimensions.
