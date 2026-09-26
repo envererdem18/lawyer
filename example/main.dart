@@ -1,53 +1,54 @@
 import 'package:lawyer/lawyer.dart';
 
-main() {
-  // Usage without dimensions array
-  final lawyer = Lawyer.instance;
-  lawyer.setRules(
-    [
-      Rule(Action.allow, [
-        "t-shirt",
-        ["S", "M"],
-        "blue"
-      ]),
-      Rule(Action.allow, ["jacket", "L", "black"]),
-      Rule(Action.allow, ["shoe", "46", "white"]),
-      Rule(Action.deny, ["shoe", "46"]),
-      Rule(Action.allow, ["shoe", "*", "*"]),
-    ],
-  );
-  lawyer.check(["jacket", "L"]);
+void main() {
+  // Rules without dimensions.
+  final products = Lawyer(rules: [
+    Rule.from(RuleAction.allow, [
+      't-shirt',
+      ['S', 'M'],
+      'blue',
+    ]),
+    Rule.from(RuleAction.allow, ['jacket', 'L', 'black']),
+    Rule.from(RuleAction.allow, ['shoe', '46', 'white']),
+    Rule.from(RuleAction.deny, ['shoe', '46']),
+    Rule.from(RuleAction.allow, ['shoe', '*', '*']),
+  ]);
 
-  // Usage with dimension array
-  final lawyer2 = Lawyer.instance;
-  lawyer2.setRules([
-    Rule(Action.allow, [
+  print(products.check(['jacket', 'L'])); // true
+  print(products.check(['shoe', '46', 'black'])); // false
+  print(products.matchingRule(['shoe', '46', 'black'])); // Rule.deny(shoe, 46)
+
+  // Rules with dimensions.
+  final rules = [
+    Rule.from(RuleAction.allow, [
       'Gold member',
       ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-      ['Swimming pool', 'Gym', 'Sauna']
+      ['Swimming pool', 'Gym', 'Sauna'],
     ]),
-    Rule(Action.deny, [
+    Rule.from(RuleAction.deny, [
       'Guest',
       ['Mon', 'Tue'],
-      ['Sauna', 'Gym']
+      ['Sauna', 'Gym'],
     ]),
-    Rule(Action.allow, [
+    Rule.from(RuleAction.allow, [
       ['Guest', 'Regular member'],
       '*',
-      '*'
-    ])
-  ]);
-  const memberships = ['Gold member', 'Regular member', 'Guest'];
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-  const facilities = ['Swimming pool', 'Gym', 'Sauna'];
+      '*',
+    ]),
+  ];
 
-  /// This will return true, because Guest is allowed for Saturday
-  lawyer2.check(['Guest', 'Sat']);
+  // Without dimensions, the wildcard accepts Saturday.
+  print(Lawyer(rules: rules).check(['Guest', 'Sat'])); // true
 
-  lawyer2.setDimensions([memberships, days, facilities]);
-
-  /// After setting dimensions, this will return false,
-  /// Because we don't have any option for Saturday any more
-  /// Days dimension does not have Saturday!!
-  lawyer2.check(['Guest', 'Sat']);
+  // With dimensions, Saturday is not a valid day.
+  final gym = Lawyer(
+    rules: rules,
+    dimensions: [
+      Dimension(['Gold member', 'Regular member', 'Guest'], name: 'membership'),
+      Dimension(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], name: 'day'),
+      Dimension(['Swimming pool', 'Gym', 'Sauna'], name: 'facility'),
+    ],
+  );
+  print(gym.check(['Guest', 'Sat'])); // false
+  print(gym.check(['Guest', 'Wed', 'Sauna'])); // true
 }

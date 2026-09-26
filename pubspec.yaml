@@ -1,20 +1,19 @@
 name: lawyer
-description: A Flutter package to set and obey the rules.
-version: 0.1.1
+description: >-
+  A lightweight, dependency-free rule engine for Dart and Flutter. Define
+  ordered allow/deny rules with wildcards and dimensions, then check conditions.
+version: 0.2.0
 repository: https://github.com/envererdem18/lawyer
-
+topics:
+  - rules
+  - rule-engine
+  - permissions
+  - validation
+  - business-logic
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
-  flutter: ">=1.17.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
+  sdk: ^3.0.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
-
-flutter:
+  lints: ^6.1.0
+  test: ^1.32.0
